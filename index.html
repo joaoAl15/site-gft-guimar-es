@@ -1,0 +1,1059 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guimarães Fight Team</title>
+<meta name="description" content="Guimarães Fight Team — Jiu-Jitsu em Campinorte (GO). Turmas Kids, Adulto e Competição. Agende sua aula experimental.">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="icon" href="img/favicon.png">
+<meta property="og:title" content="Guimarães Fight Team — Jiu-Jitsu em Campinorte">
+<meta property="og:description" content="Turmas Kids, Adulto e Competição. Agende sua aula experimental.">
+<meta property="og:image" content="img/logo-round.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0B0C; --bg2:#141416; --light:#EEF0F2; --light2:#E2E5E8;
+  --ink:#0F1013; --white:#F4F4F2; --muted:#8A8A8A; --line:rgba(255,255,255,.12); --line-d:rgba(15,16,19,.14);
+  --red:#D90A12; --red-d:#A8060C;
+  --f-display:'Unbounded',sans-serif; --f-head:'Inter Tight',sans-serif; --f-body:'Inter',sans-serif;
+  --pad:clamp(16px,4vw,56px);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--bg);color:var(--white);font:400 16px/1.55 var(--f-body);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--red);color:#fff}
+.wrap{padding-inline:var(--pad);max-width:1600px;margin-inline:auto}
+.label{font:500 12px/1.2 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.thin{font-family:var(--f-display);font-weight:300;text-transform:uppercase;letter-spacing:.02em;color:var(--muted)}
+.line-mask{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.line-mask>span{display:inline-block;will-change:transform}
+
+/* ---------- loader ---------- */
+#loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:flex-end;justify-content:space-between;padding:var(--pad);pointer-events:all}
+#loader .mark{position:absolute;left:50%;top:50%;width:min(46vw,300px);transform:translate(-50%,-50%);opacity:.9}
+#loader .count{font:300 clamp(64px,14vw,200px)/.8 var(--f-display);letter-spacing:-.04em}
+#loader .bar{position:absolute;left:0;bottom:0;height:3px;background:var(--red);width:0}
+
+/* ---------- cursor ---------- */
+.cursor,.cursor-dot{position:fixed;top:0;left:0;pointer-events:none;z-index:90;border-radius:50%;transform:translate(-50%,-50%)}
+.cursor{width:38px;height:38px;border:1px solid rgba(255,255,255,.5);mix-blend-mode:difference;transition:width .35s var(--ease),height .35s var(--ease),background .35s}
+.cursor.hover{width:74px;height:74px;background:#fff}
+.cursor-dot{width:5px;height:5px;background:var(--red)}
+@media (pointer:coarse){.cursor,.cursor-dot{display:none}}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px var(--pad);transition:transform .5s var(--ease),background .4s}
+.nav.scrolled{background:rgba(11,11,12,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav.hide{transform:translateY(-110%)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:40px;height:40px}
+.brand b{font:700 15px/1 var(--f-head);letter-spacing:-.02em}
+.brand small{display:block;font:400 11px/1.3 var(--f-body);color:var(--muted);letter-spacing:.06em}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{font:500 14px var(--f-body);color:rgba(255,255,255,.75);transition:color .3s}
+.nav ul a:hover{color:#fff}
+.menu-btn{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);position:relative}
+.menu-btn i{position:absolute;left:13px;right:13px;height:1.5px;background:#fff;transition:transform .4s var(--ease)}
+.menu-btn i:first-child{top:18px}.menu-btn i:last-child{top:25px}
+.menu-open .menu-btn i:first-child{transform:translateY(3.5px) rotate(45deg)}
+.menu-open .menu-btn i:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:45;background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:var(--pad);gap:6px;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease)}
+.menu-open .mobile-menu{clip-path:inset(0 0 0 0)}
+.mobile-menu a{font:700 clamp(40px,11vw,64px)/1.05 var(--f-head);letter-spacing:-.04em}
+.mobile-menu a span{color:var(--red)}
+
+/* ---------- pills ---------- */
+.pill{display:inline-flex;align-items:center;gap:14px;padding:8px 8px 8px 24px;border-radius:999px;font:600 15px var(--f-head);letter-spacing:-.01em;transition:transform .4s var(--ease),background .3s,color .3s;white-space:nowrap}
+.pill .ic{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;transition:transform .5s var(--ease)}
+.pill:hover .ic{transform:rotate(-45deg)}
+.pill svg{width:18px;height:18px}
+.pill-red{background:var(--red);color:#fff}.pill-red .ic{background:#fff;color:var(--red)}
+.pill-red:hover{background:var(--red-d)}
+.pill-light{background:var(--white);color:var(--ink)}.pill-light .ic{background:var(--ink);color:#fff}
+.pill-dark{background:var(--ink);color:#fff}.pill-dark .ic{background:var(--red);color:#fff}
+.pill-sm{padding:6px 6px 6px 18px;font-size:14px}.pill-sm .ic{width:32px;height:32px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100svh;min-height:640px;overflow:hidden;background:radial-gradient(120% 90% at 70% 40%,#1b1b1e 0%,var(--bg) 60%)}
+.hero-name{position:absolute;left:-.6vw;top:47%;transform:translateY(-50%);font:600 18.6vw/.82 var(--f-display);letter-spacing:-.05em;white-space:nowrap;color:var(--white);user-select:none}
+.hero-name .ch{display:inline-block}
+.hero-sub{position:absolute;left:var(--pad);top:calc(47% + 9.4vw + 18px);font:300 clamp(14px,1.6vw,24px)/1 var(--f-display);letter-spacing:.32em;color:var(--muted);text-transform:uppercase}
+#hero3d{position:absolute;inset:0;width:100%;height:100%;z-index:2}
+.hero-rings{position:absolute;right:8vw;top:50%;width:min(60vh,44vw);aspect-ratio:1;transform:translateY(-50%);z-index:1;opacity:.5}
+.hero-top{position:absolute;top:96px;left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;z-index:3}
+.hero-bottom{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(64px,9vh,96px);z-index:3;display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px}
+.hero h1{font:800 clamp(40px,6.2vw,104px)/.9 var(--f-head);letter-spacing:-.055em}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero-cta{display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:340px}
+.hero-cta p{color:rgba(255,255,255,.7);font-size:15px}
+.scroll-hint{position:absolute;right:var(--pad);top:50%;writing-mode:vertical-rl;z-index:3}
+.scroll-hint::after{content:"";display:block;width:1px;height:56px;margin:14px auto 0;background:linear-gradient(var(--muted),transparent);animation:drip 2.2s var(--ease) infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--red);color:#fff;overflow:hidden;transform:rotate(-2deg) scale(1.04);margin-block:-28px;position:relative;z-index:5;padding-block:18px}
+.marquee-track{display:flex;width:max-content;animation:mq 26s linear infinite}
+.marquee span{font:700 clamp(22px,3vw,40px)/1 var(--f-head);letter-spacing:-.03em;text-transform:uppercase;padding-right:44px;display:flex;align-items:center;gap:44px;white-space:nowrap}
+.marquee span::after{content:"";width:16px;height:14px;background:#fff;clip-path:polygon(50% 0,100% 100%,0 100%)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- light sections ---------- */
+.light{background:var(--light);color:var(--ink)}
+.light .label,.light .thin{color:#7d8186}
+section{position:relative}
+.sec-pad{padding-block:clamp(96px,14vw,200px)}
+.big-h{font:800 clamp(44px,8vw,140px)/.88 var(--f-head);letter-spacing:-.06em}
+.big-h em{font-style:normal;color:var(--red)}
+
+/* manifesto */
+.manifesto-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.manifesto-grid .head{grid-column:1/9}
+.manifesto-grid .side{grid-column:9/13;padding-bottom:10px}
+.manifesto-grid .side p{font-size:17px;color:#3a3d42;margin-top:16px}
+.photo-strip{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:16px;margin-top:clamp(56px,8vw,110px)}
+.ph-frame{overflow:hidden;border-radius:6px;position:relative;background:#cfd3d7}
+.ph-frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);will-change:transform}
+.photo-strip .ph-frame{aspect-ratio:4/5}
+.photo-strip .ph-frame:first-child{aspect-ratio:auto}
+.ph-cap{position:absolute;left:14px;bottom:12px;font:500 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(56px,7vw,96px);border-top:1px solid var(--line-d)}
+.stats>div{padding:28px 24px 0 0}
+.stats .n{font:400 clamp(44px,6vw,92px)/1 var(--f-display);letter-spacing:-.05em}
+.stats .n sup{font-size:.35em;color:var(--red);vertical-align:top;margin-left:4px}
+
+/* ---------- faixas 3D ---------- */
+.belts{height:520vh;background:var(--bg)}
+.belts-sticky{position:sticky;top:0;height:100svh;overflow:hidden}
+#belts3d{position:absolute;inset:0;width:100%;height:100%}
+.belts-ui{position:absolute;inset:0;pointer-events:none;padding:110px var(--pad) clamp(28px,6vh,56px);display:flex;flex-direction:column;justify-content:space-between}
+.belts-head h2{font:300 clamp(14px,1.4vw,20px)/1.2 var(--f-display);letter-spacing:.3em;color:var(--muted);text-transform:uppercase}
+.belts-head p{font:800 clamp(32px,4.4vw,72px)/.92 var(--f-head);letter-spacing:-.05em;margin-top:12px;max-width:12ch}
+.belt-info{display:flex;align-items:flex-end;gap:clamp(20px,4vw,64px);max-width:640px}
+.belt-num{font:300 clamp(80px,13vw,200px)/.8 var(--f-display);letter-spacing:-.06em;flex:none}
+.belt-num small{font-size:.22em;color:var(--muted);letter-spacing:0}
+.belt-text .label{color:var(--muted)}
+.belt-text h3{font:600 clamp(28px,3.4vw,52px)/1 var(--f-display);letter-spacing:-.04em;margin:8px 0 10px;text-transform:uppercase}
+.belt-text p{color:rgba(255,255,255,.7);max-width:36ch}
+.belt-prog{position:absolute;right:var(--pad);bottom:clamp(28px,6vh,56px);width:92px;height:92px}
+.belt-prog circle{fill:none;stroke-width:1}
+.kids-note{position:absolute;right:var(--pad);top:120px;max-width:260px;text-align:right;font-size:13px;color:var(--muted)}
+.kids-note b{color:#fff;font-weight:500}
+
+/* ---------- planos ---------- */
+.plans-head{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
+.tabs{display:inline-flex;background:var(--light2);border-radius:999px;padding:5px;position:relative;margin-top:40px}
+.tabs button{position:relative;z-index:1;padding:12px 22px;border-radius:999px;font:600 15px var(--f-head);color:#55595f;transition:color .4s}
+.tabs button.on{color:#fff}
+.tabs .glider{position:absolute;top:5px;bottom:5px;left:5px;border-radius:999px;background:var(--ink);transition:transform .55s var(--ease),width .55s var(--ease)}
+.aud{display:grid;grid-template-columns:minmax(260px,.8fr) 2fr;gap:24px;margin-top:40px}
+.aud-card{border-radius:8px;overflow:hidden;position:relative;min-height:520px;color:#fff;background:#222}
+.aud-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.aud-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.85))}
+.aud-card .in{position:absolute;left:24px;right:24px;bottom:24px;z-index:1}
+.aud-card h3{font:600 clamp(30px,2.7vw,46px)/.95 var(--f-display);letter-spacing:-.05em;text-transform:uppercase}
+.aud-card p{color:rgba(255,255,255,.8);margin-top:10px;font-size:15px}
+.aud-card .tag{display:inline-block;margin-bottom:14px;padding:6px 12px;border:1px solid rgba(255,255,255,.4);border-radius:99px;font:500 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plan{background:#fff;border-radius:8px;padding:28px 24px 24px;display:flex;flex-direction:column;border:1px solid transparent;position:relative;transition:transform .5s var(--ease),box-shadow .5s}
+.plan:hover{transform:translateY(-6px);box-shadow:0 24px 50px -24px rgba(15,16,19,.35)}
+.plan.feat{background:var(--ink);color:#fff}
+.plan .flag{position:absolute;top:18px;right:18px;background:var(--red);color:#fff;font:600 11px var(--f-body);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:99px}
+.plan h4{font:700 22px/1.1 var(--f-head);letter-spacing:-.03em;padding-right:80px}
+.plan .desc{font-size:14px;color:#6b6f75;margin-top:8px;min-height:44px}
+.plan.feat .desc{color:rgba(255,255,255,.6)}
+.price{display:flex;align-items:baseline;gap:6px;margin:26px 0 22px;padding-bottom:22px;border-bottom:1px solid var(--line-d)}
+.plan.feat .price{border-color:var(--line)}
+.price .cur{font:500 16px var(--f-head)}
+.price .val{font:400 clamp(44px,4vw,60px)/1 var(--f-display);letter-spacing:-.06em}
+.price .per{font-size:14px;color:#8a8e94}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:11px;font-size:14.5px;flex:1}
+.plan li{display:flex;gap:10px;align-items:flex-start}
+.plan li::before{content:"";flex:none;margin-top:6px;width:9px;height:8px;background:var(--red);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.plan .pill{margin-top:26px;justify-content:space-between}
+.plans-note{margin-top:22px;font-size:13px;color:#7d8186}
+
+/* ---------- conquistas ---------- */
+.wins{background:var(--bg);overflow:hidden}
+.wins-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:64px}
+.win{position:relative;border-radius:6px;overflow:hidden;background:#1a1a1a}
+.win img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.win:hover img{transform:scale(1.06)}
+.win .ph-cap{font-size:11px}
+.w1{grid-column:1/6;grid-row:span 2;aspect-ratio:4/5.4}
+.w2{grid-column:6/9;aspect-ratio:9/12}
+.w3{grid-column:9/13;aspect-ratio:9/12}
+.w4{grid-column:6/10;aspect-ratio:16/11}
+.w5{grid-column:10/13;aspect-ratio:9/11}
+.events{margin-top:72px;border-top:1px solid var(--line)}
+.ev{display:grid;grid-template-columns:80px 1fr auto;gap:24px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line);position:relative}
+.ev .i{font:300 14px var(--f-display);color:var(--muted)}
+.ev h4{font:600 clamp(22px,3vw,44px)/1 var(--f-head);letter-spacing:-.04em;transition:transform .6s var(--ease),color .3s}
+.ev:hover h4{transform:translateX(14px);color:var(--red)}
+.ev span{font-size:13px;color:var(--muted);text-align:right}
+
+/* ---------- galeria ---------- */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(160px,19vw,300px);gap:14px;margin-top:56px}
+.g{border-radius:6px;overflow:hidden;position:relative;transform-style:preserve-3d;background:#cfd3d7}
+.g img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.g:hover img{transform:scale(1.07)}
+.g.tall{grid-row:span 2}.g.wide{grid-column:span 2}
+
+/* ---------- professor ---------- */
+.prof{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.prof .ph-frame{aspect-ratio:4/5;border-radius:8px}
+.prof h2{font:600 clamp(40px,5.6vw,92px)/.9 var(--f-display);letter-spacing:-.06em;text-transform:uppercase;margin:16px 0 28px}
+.prof p{color:rgba(255,255,255,.72);font-size:17px;max-width:46ch}
+.prof .spec{display:grid;grid-template-columns:1fr 1fr;gap:20px 32px;margin:36px 0;padding-top:28px;border-top:1px solid var(--line)}
+.prof .spec b{display:block;font:500 16px var(--f-head);color:#fff;margin-top:4px}
+.ph-todo{border:1px dashed rgba(255,255,255,.3);padding:2px 8px;border-radius:4px;color:var(--muted);font-size:14px}
+
+/* ---------- local ---------- */
+.local{display:grid;grid-template-columns:1fr 1.3fr;gap:24px;margin-top:56px}
+.local-info{background:#fff;border-radius:8px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:28px}
+.local-info .row .label{margin-bottom:6px}
+.local-info .row p,.local-info .row a{font:600 clamp(18px,1.6vw,22px)/1.3 var(--f-head);letter-spacing:-.02em}
+.local-info .row a:hover{color:var(--red)}
+.local-info .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
+.map{border-radius:8px;overflow:hidden;min-height:440px;background:#d6d9dc;position:relative}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) contrast(1.05)}
+.map:hover iframe{filter:none}
+
+/* ---------- cta ---------- */
+.cta{background:var(--red);color:#fff;overflow:hidden;text-align:left}
+.cta .big-h{font-size:clamp(56px,13vw,230px);line-height:.84}
+.cta-row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-top:48px;flex-wrap:wrap}
+.cta-row p{max-width:38ch;font-size:18px;color:rgba(255,255,255,.88)}
+.cta .pill-light .ic{background:var(--red)}
+.cta-badge{position:absolute;right:var(--pad);top:clamp(48px,7vw,96px);width:clamp(90px,11vw,160px);animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- footer ---------- */
+footer{background:var(--bg);padding:72px var(--pad) 28px}
+.foot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;padding-bottom:56px;border-bottom:1px solid var(--line)}
+.foot h5{font:500 12px var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.foot a,.foot p{display:block;font-size:15px;color:rgba(255,255,255,.8);margin-bottom:8px}
+.foot a:hover{color:var(--red)}
+.foot-name{font:600 clamp(40px,12.2vw,220px)/.8 var(--f-display);letter-spacing:-.06em;margin-top:40px;white-space:nowrap;color:#1c1c1f}
+.foot-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:20px;padding-right:84px}
+.foot-bot a:hover{color:#fff}
+
+/* ---------- whatsapp float ---------- */
+.wa-float{position:fixed;right:clamp(14px,2vw,28px);bottom:clamp(14px,2vw,28px);z-index:40;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);transform:scale(0);transition:transform .5s var(--ease)}
+.wa-float.show{transform:scale(1)}
+.wa-float svg{width:30px;height:30px;color:#fff}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:ping 2.4s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.7);opacity:0}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1024px){
+  .nav ul{display:none}.menu-btn{display:block}.nav .pill{display:none}
+  .manifesto-grid .head,.manifesto-grid .side{grid-column:1/-1}
+  .aud{grid-template-columns:1fr}
+  .aud-card{min-height:340px}
+  .plans{grid-template-columns:1fr 1fr}
+  .prof{grid-template-columns:1fr}
+  .local{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .kids-note{display:none}
+}
+@media (max-width:720px){
+  .hero-name{font-size:27vw;top:38%}
+  .hero-sub{top:calc(38% + 13.5vw + 14px);letter-spacing:.24em}
+  .hero-rings{right:-10vw;width:90vw;top:38%}
+  .hero-bottom{grid-template-columns:1fr;gap:20px}
+  .hero-top{display:none}
+  .scroll-hint{display:none}
+  .photo-strip{grid-template-columns:1fr 1fr}
+  .photo-strip .ph-frame:first-child{grid-column:1/-1;aspect-ratio:4/3}
+  .stats{grid-template-columns:1fr 1fr 1fr}
+  .stats>div{padding:20px 10px 0 0}
+  .stats .label{font-size:10px;letter-spacing:.08em}
+  .plans{grid-template-columns:1fr}
+  .tabs{display:flex;width:100%}.tabs button{flex:1;padding:12px 8px;font-size:14px}
+  .wins-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .w1{grid-column:1/-1;aspect-ratio:4/4.6}
+  .w2,.w3,.w4,.w5{grid-column:auto;aspect-ratio:3/4}
+  .ev{grid-template-columns:40px 1fr}.ev span{display:none}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:44vw;gap:10px}
+  .g.wide{grid-column:span 2}
+  .belt-info{flex-direction:column;align-items:flex-start;gap:6px}
+  .belt-num{font-size:72px}
+  .belt-prog{display:none}
+  .belts-ui{padding-top:96px}
+  .foot{grid-template-columns:1fr}
+  .plans-head{grid-template-columns:1fr}
+  .map{min-height:340px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .ph-frame img{transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader" aria-hidden="true">
+  <img class="mark" src="img/gft-mark.png" alt="">
+  <span class="label">Guimarães Fight Team</span>
+  <span class="count" id="count">0</span>
+  <div class="bar" id="bar"></div>
+</div>
+
+<div class="cursor" id="cursor"></div><div class="cursor-dot" id="cursorDot"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand" aria-label="Guimarães Fight Team — início">
+    <img src="img/logo-round.png" alt="Logo Guimarães Fight Team" width="40" height="40">
+    <span><b>GFT</b><small>Campinorte · GO</small></span>
+  </a>
+  <ul>
+    <li><a href="#sobre">A equipe</a></li>
+    <li><a href="#faixas">Faixas</a></li>
+    <li><a href="#planos">Planos</a></li>
+    <li><a href="#conquistas">Conquistas</a></li>
+    <li><a href="#local">Onde estamos</a></li>
+  </ul>
+  <a class="pill pill-red pill-sm js-wa" data-msg="Olá! Vim pelo site e quero agendar uma aula experimental na GFT." href="#" target="_blank" rel="noopener">Aula experimental <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+  <button class="menu-btn" id="menuBtn" aria-label="Abrir menu"><i></i><i></i></button>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menu">
+  <a href="#sobre">A equipe<span>.</span></a>
+  <a href="#faixas">Faixas<span>.</span></a>
+  <a href="#planos">Planos<span>.</span></a>
+  <a href="#conquistas">Conquistas<span>.</span></a>
+  <a href="#local">Onde estamos<span>.</span></a>
+  <a class="js-wa" data-msg="Olá! Vim pelo site e quero agendar uma aula experimental na GFT." href="#" target="_blank" rel="noopener" style="color:#25D366">WhatsApp<span>.</span></a>
+</nav>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" id="hero">
+  <svg class="hero-rings" viewBox="0 0 200 200" aria-hidden="true">
+    <circle cx="100" cy="100" r="98" stroke="rgba(255,255,255,.25)" stroke-width=".3" fill="none"/>
+    <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,.15)" stroke-width=".3" fill="none" stroke-dasharray="1 2"/>
+    <circle id="heroArc" cx="100" cy="100" r="98" stroke="#D90A12" stroke-width=".8" fill="none" stroke-dasharray="616" stroke-dashoffset="616" transform="rotate(-90 100 100)"/>
+    <g stroke="rgba(255,255,255,.2)" stroke-width=".3"><line x1="100" y1="0" x2="100" y2="8"/><line x1="100" y1="192" x2="100" y2="200"/><line x1="0" y1="100" x2="8" y2="100"/><line x1="192" y1="100" x2="200" y2="100"/></g>
+  </svg>
+  <div class="hero-name" id="heroName" aria-hidden="true">GUIMARÃES</div>
+  <div class="hero-sub" id="heroSub" aria-hidden="true">Fight Team — Jiu-Jitsu</div>
+  <canvas id="hero3d" aria-hidden="true"></canvas>
+  <div class="hero-top">
+    <span class="label">Escola de Jiu-Jitsu</span>
+    <span class="label">Campinorte — Goiás</span>
+  </div>
+  <div class="hero-bottom">
+    <h1><span class="line-mask"><span>Disciplina</span></span><span class="line-mask"><span>se treina<em>.</em></span></span></h1>
+    <div class="hero-cta">
+      <p>Jiu-Jitsu pra criança, pra adulto e pra quem quer subir no pódio. A primeira aula é só o começo.</p>
+      <a class="pill pill-red js-wa" data-msg="Olá! Vim pelo site e quero agendar uma aula experimental na GFT." href="#" target="_blank" rel="noopener">Agendar aula experimental <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    </div>
+  </div>
+  <span class="scroll-hint label">Scroll</span>
+  <h2 class="sr-only" style="position:absolute;left:-9999px">Guimarães Fight Team — Jiu-Jitsu em Campinorte, Goiás</h2>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Jiu-Jitsu</span><span>Kids</span><span>Adulto</span><span>Competição</span><span>Defesa pessoal</span><span>Preparação física</span>
+  <span>Jiu-Jitsu</span><span>Kids</span><span>Adulto</span><span>Competição</span><span>Defesa pessoal</span><span>Preparação física</span>
+</div></div>
+
+<!-- SOBRE -->
+<section class="light sec-pad" id="sobre">
+  <div class="wrap">
+    <div class="manifesto-grid">
+      <div class="head">
+        <span class="thin">A equipe</span>
+        <h2 class="big-h reveal-lines" style="margin-top:18px"><span class="line-mask"><span>Aqui ninguém</span></span><span class="line-mask"><span>treina sozinho<em>.</em></span></span></h2>
+      </div>
+      <div class="side">
+        <span class="label">Guimarães Fight Team</span>
+        <p>A GFT é uma família no tatame. Técnica, preparação física e respeito pra quem tá começando agora e pra quem já compete. Do kids ao adulto, todo mundo cresce junto — faixa por faixa.</p>
+      </div>
+    </div>
+    <div class="photo-strip">
+      <div class="ph-frame"><img src="img/turma.jpg" alt="Turma da Guimarães Fight Team reunida no tatame" loading="lazy" data-parallax><span class="ph-cap">A turma</span></div>
+      <div class="ph-frame"><img src="img/kids-aula.jpg" alt="Professor cumprimentando aluna da turma kids" loading="lazy" data-parallax><span class="ph-cap">Turma kids</span></div>
+      <div class="ph-frame"><img src="img/adultos.jpg" alt="Alunos adultos de kimono no tatame" loading="lazy" data-parallax><span class="ph-cap">Adulto</span></div>
+    </div>
+    <div class="stats">
+      <div><div class="n" data-count="3">0</div><span class="label">Turmas: kids, adulto e competição</span></div>
+      <div><div class="n" data-count="77">0</div><span class="label">Posts de treino e campeonato</span></div>
+      <div><div class="n" data-count="1000" data-suffix="+">0</div><span class="label">Seguidores no Instagram</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAIXAS 3D -->
+<section class="belts" id="faixas">
+  <div class="belts-sticky">
+    <canvas id="belts3d" aria-hidden="true"></canvas>
+    <div class="belts-ui">
+      <div class="belts-head">
+        <h2>A jornada</h2>
+        <p>Cada faixa conta uma história.</p>
+      </div>
+      <div class="belt-info">
+        <div class="belt-num"><span id="beltNum">01</span><small>/05</small></div>
+        <div class="belt-text">
+          <span class="label" id="beltLabel">Primeiro passo</span>
+          <h3 id="beltName">Branca</h3>
+          <p id="beltDesc">Onde todo mundo começa. Aprender a cair, a respirar e a voltar no dia seguinte.</p>
+        </div>
+      </div>
+      <p class="kids-note"><b>Kids</b> passam também pelas faixas cinza, amarela, laranja e verde antes da azul.</p>
+      <svg class="belt-prog" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="46" stroke="rgba(255,255,255,.15)"/>
+        <circle id="beltArc" cx="50" cy="50" r="46" stroke="#D90A12" stroke-width="2" stroke-dasharray="289" stroke-dashoffset="289" transform="rotate(-90 50 50)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="light sec-pad" id="planos">
+  <div class="wrap">
+    <div class="plans-head">
+      <div>
+        <span class="thin">Planos e turmas</span>
+        <h2 class="big-h" style="margin-top:18px"><span class="line-mask"><span>Escolha seu</span></span><span class="line-mask"><span>tatame<em>.</em></span></span></h2>
+      </div>
+      <p style="max-width:34ch;color:#55595f">Cada público tem turma e plano próprios. Escolha um, clique e a gente continua a conversa no WhatsApp.</p>
+    </div>
+    <div class="tabs" role="tablist" id="tabs">
+      <span class="glider" id="glider"></span>
+      <button role="tab" class="on" data-aud="kids">Kids</button>
+      <button role="tab" data-aud="adulto">Adulto</button>
+      <button role="tab" data-aud="competicao">Competição</button>
+    </div>
+    <div class="aud" id="aud">
+      <div class="aud-card" id="audCard">
+        <img id="audImg" src="img/medalhas2.jpg" alt="">
+        <div class="in">
+          <span class="tag" id="audTag">A partir de 4 anos</span>
+          <h3 id="audTitle">Kids</h3>
+          <p id="audText"></p>
+        </div>
+      </div>
+      <div class="plans" id="plans"></div>
+    </div>
+    <p class="plans-note">Valores e horários podem mudar. Confirme com a equipe pelo WhatsApp antes de fechar.</p>
+  </div>
+</section>
+
+<!-- CONQUISTAS -->
+<section class="wins sec-pad" id="conquistas">
+  <div class="wrap">
+    <span class="thin">Conquistas</span>
+    <h2 class="big-h" style="margin-top:18px"><span class="line-mask"><span>Treino vira</span></span><span class="line-mask"><span>medalha<em>.</em></span></span></h2>
+    <div class="wins-grid">
+      <div class="win w1"><img src="img/evento.jpg" alt="Equipe GFT reunida em campeonato" loading="lazy"><span class="ph-cap">Equipe em campeonato</span></div>
+      <div class="win w2"><img src="img/medalhas1.jpg" alt="Atleta kids da GFT com duas medalhas de ouro" loading="lazy"><span class="ph-cap">Ouro no kids</span></div>
+      <div class="win w3"><img src="img/podio1.jpg" alt="Atleta recebendo troféu Atleta Pódio" loading="lazy"><span class="ph-cap">Atleta Pódio</span></div>
+      <div class="win w4"><img src="img/luta1.jpg" alt="Luta de atleta da GFT em campeonato" loading="lazy" style="object-position:50% 60%"><span class="ph-cap">No tatame</span></div>
+      <div class="win w5"><img src="img/podio2.jpg" alt="Atleta da GFT com troféu" loading="lazy"><span class="ph-cap">Premiação</span></div>
+    </div>
+    <div class="events">
+      <div class="ev"><span class="i">01</span><h4>Campeonato Brasileiro CBSJJ</h4><span>2025</span></div>
+      <div class="ev"><span class="i">02</span><h4>Cerrado Cup — Gi e NoGi</h4><span>2025</span></div>
+      <div class="ev"><span class="i">03</span><h4>Centro-Oeste Challenge</h4><span>2025</span></div>
+      <div class="ev"><span class="i">04</span><h4>Graduação GFT</h4><span>Todo ano</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="light sec-pad" id="galeria">
+  <div class="wrap">
+    <div class="plans-head">
+      <div>
+        <span class="thin">Galeria</span>
+        <h2 class="big-h" style="margin-top:18px"><span class="line-mask"><span>Do treino</span></span><span class="line-mask"><span>ao pódio<em>.</em></span></span></h2>
+      </div>
+      <a class="pill pill-dark js-ig" href="#" target="_blank" rel="noopener">Ver no Instagram <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    </div>
+    <div class="gallery">
+      <div class="g wide tilt"><img src="img/graduacao.jpg" alt="Formatura de graduação com alunos segurando certificados" loading="lazy"></div>
+      <div class="g tall tilt"><img src="img/luta2.jpg" alt="Atletas lutando em campeonato" loading="lazy"></div>
+      <div class="g tilt"><img src="img/faixa.jpg" alt="Aluno recebendo faixa roxa e certificado" loading="lazy"></div>
+      <div class="g tilt"><img src="img/atleta-kid.jpg" alt="Atleta kids de kimono preto" loading="lazy"></div>
+      <div class="g tall tilt"><img src="img/atleta-fem.jpg" alt="Atleta da GFT sorrindo de kimono" loading="lazy"></div>
+      <div class="g tilt"><img src="img/adulto-treino.jpg" alt="Treino de finalização no tatame" loading="lazy" style="object-position:50% 35%"></div>
+      <div class="g wide tilt"><img src="img/coach.jpg" alt="Professor orientando atleta na beira do tatame" loading="lazy"></div>
+      <div class="g tilt"><img src="img/treino.jpg" alt="Aquecimento da turma no tatame" loading="lazy"></div>
+      <div class="g tilt"><img src="img/luta3.jpg" alt="Atleta finalizando adversária" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSOR -->
+<section class="sec-pad" id="professor" style="background:var(--bg)">
+  <div class="wrap prof">
+    <div class="ph-frame"><img src="img/professor.jpg" alt="Professor Policarpio Guimarães com aluna graduada" loading="lazy" data-parallax></div>
+    <div>
+      <span class="thin">Professor</span>
+      <h2>Policarpio<br>Guimarães</h2>
+      <p>Fundador da GFT e responsável pelas turmas. Ensina do jeito que o Jiu-Jitsu pede: com técnica, paciência e muita exigência — dentro e fora do tatame.</p>
+      <div class="spec">
+        <div><span class="label">Graduação</span><b><span class="ph-todo">preencher</span></b></div>
+        <div><span class="label">Instagram</span><b><a href="https://www.instagram.com/pguimaraesjj/" target="_blank" rel="noopener">@pguimaraesjj</a></b></div>
+        <div><span class="label">Especialidade</span><b>Jiu-Jitsu Gi e NoGi</b></div>
+        <div><span class="label">Turmas</span><b>Kids · Adulto · Competição</b></div>
+      </div>
+      <a class="pill pill-light js-wa" data-msg="Olá, professor! Vim pelo site e quero saber mais sobre as turmas da GFT." href="#" target="_blank" rel="noopener">Falar com o professor <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL -->
+<section class="light sec-pad" id="local">
+  <div class="wrap">
+    <span class="thin">Onde estamos</span>
+    <h2 class="big-h" style="margin-top:18px"><span class="line-mask"><span>Bora pro</span></span><span class="line-mask"><span>tatame<em>?</em></span></span></h2>
+    <div class="local">
+      <div class="local-info">
+        <div class="row"><div class="label">Endereço</div><p id="addr"></p></div>
+        <div class="row"><div class="label">WhatsApp</div><a class="js-wa" id="waText" data-msg="Olá! Vim pelo site da GFT." href="#" target="_blank" rel="noopener"></a></div>
+        <div class="row"><div class="label">Instagram</div><a class="js-ig" href="#" target="_blank" rel="noopener">@gft.campinorte</a></div>
+        <div class="btns">
+          <a class="pill pill-dark pill-sm js-maps" href="#" target="_blank" rel="noopener">Abrir no Maps <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span></a>
+          <a class="pill pill-red pill-sm js-wa" data-msg="Olá! Vim pelo site e quero agendar uma aula experimental na GFT." href="#" target="_blank" rel="noopener">Chamar no WhatsApp <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+        </div>
+      </div>
+      <div class="map"><iframe id="mapFrame" title="Mapa da Guimarães Fight Team" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta sec-pad">
+  <img class="cta-badge" src="img/logo-round.png" alt="" aria-hidden="true">
+  <div class="wrap">
+    <span class="label" style="color:rgba(255,255,255,.75)">Primeira aula</span>
+    <h2 class="big-h" style="margin-top:18px"><span class="line-mask"><span>O kimono</span></span><span class="line-mask"><span>te espera.</span></span></h2>
+    <div class="cta-row">
+      <p>Não precisa estar em forma, nem saber nada. Precisa só aparecer. O resto a gente ensina.</p>
+      <a class="pill pill-light js-wa" data-msg="Olá! Vim pelo site e quero agendar uma aula experimental na GFT." href="#" target="_blank" rel="noopener">Quero minha aula <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <div>
+      <a href="#top" class="brand"><img src="img/logo-round.png" alt="" width="40" height="40"><span><b>Guimarães Fight Team</b><small>Escola de Jiu-Jitsu</small></span></a>
+      <p style="margin-top:18px;max-width:34ch;color:var(--muted)">Kids, adulto e competição. Preparação física e técnica em Campinorte, Goiás.</p>
+    </div>
+    <div><h5>Navegar</h5><a href="#sobre">A equipe</a><a href="#faixas">Faixas</a><a href="#planos">Planos</a><a href="#conquistas">Conquistas</a></div>
+    <div><h5>Contato</h5><a class="js-wa" data-msg="Olá! Vim pelo site da GFT." href="#" target="_blank" rel="noopener">WhatsApp</a><a class="js-ig" href="#" target="_blank" rel="noopener">Instagram</a><a class="js-maps" href="#" target="_blank" rel="noopener">Como chegar</a></div>
+    <div><h5>Endereço</h5><p id="addrFoot"></p></div>
+  </div>
+  <div class="foot-name" aria-hidden="true">GUIMARÃES</div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Guimarães Fight Team. Oss.</span><a href="https://www.instagram.com/tokanu_s/" target="_blank" rel="noopener">Site por Tokanu</a></div>
+</footer>
+
+<a class="wa-float js-wa" id="waFloat" data-msg="Olá! Vim pelo site da GFT." href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.24-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.23 9.43-9.44 9.43m8.03-17.46A11.3 11.3 0 0 0 12.05.72C5.79.72.7 5.8.7 12.06c0 2 .52 3.95 1.52 5.67L.6 23.62l6.03-1.58a11.3 11.3 0 0 0 5.42 1.38h.01c6.25 0 11.34-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.03"/></svg>
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+
+<script>
+/* =========================================================
+   CONFIG — edite aqui: WhatsApp, links e PREÇOS dos planos
+   ========================================================= */
+window.CONFIG = {
+  whatsapp: '5562900000000', // DDI+DDD+número, só dígitos (TROCAR pelo número real)
+  whatsappLabel: '(62) 9 0000-0000',
+  instagram: 'https://www.instagram.com/gft.campinorte/',
+  endereco: 'Av. Bernardo Sayão, Qd 05, Lt 02 — Novo Horizonte, Campinorte - GO, 76410-000',
+  mapsQuery: 'Av. Bernardo Sayão, Qd 05, Lt 02, Novo Horizonte, Campinorte - GO, 76410-000'
+};
+window.PUBLICOS = {
+  kids: {
+    titulo: 'Kids', tag: 'A partir de 4 anos', img: 'img/medalhas2.jpg',
+    texto: 'Disciplina, coordenação e confiança — com muita brincadeira no meio. Turma separada por idade.',
+    planos: [
+      { nome: 'Kids 2x', desc: 'Duas aulas por semana pra começar com o pé direito.', preco: '100', itens: ['2 aulas por semana','Turma separada por idade','Graduação por faixas coloridas','Acompanhamento do professor'] },
+      { nome: 'Kids 3x', desc: 'Mais tatame, evolução mais rápida.', preco: '130', destaque: true, itens: ['3 aulas por semana','Turma separada por idade','Graduação por faixas coloridas','Preparação para campeonatos kids'] },
+      { nome: 'Irmãos', desc: 'Dois ou mais irmãos treinando juntos.', preco: '180', per: '/mês p/ 2', itens: ['Vale para 2 irmãos','Todas as aulas da turma kids','Graduação por faixas coloridas','Consulte valor para 3 ou mais'] }
+    ]
+  },
+  adulto: {
+    titulo: 'Adulto', tag: 'A partir de 14 anos', img: 'img/adultos.jpg',
+    texto: 'Do zero ao avançado. Técnica, condicionamento e defesa pessoal — no seu ritmo, sem ego.',
+    planos: [
+      { nome: 'Mensal 2x', desc: 'Pra encaixar o Jiu-Jitsu na rotina.', preco: '120', itens: ['2 aulas por semana','Turmas Gi (kimono)','Graduação oficial','Aula experimental antes de fechar'] },
+      { nome: 'Livre', desc: 'Todas as aulas da grade, quantas quiser.', preco: '150', destaque: true, itens: ['Acesso livre à grade','Gi e NoGi','Graduação oficial','Treinos de preparação física'] },
+      { nome: 'Trimestral', desc: 'Plano livre com valor menor por mês.', preco: '400', per: '/3 meses', itens: ['Acesso livre por 3 meses','Gi e NoGi','Graduação oficial','Economia em relação ao mensal'] }
+    ]
+  },
+  competicao: {
+    titulo: 'Competição', tag: 'Equipe de atletas', img: 'img/luta2.jpg',
+    texto: 'Pra quem quer pisar no pódio. Treino específico, preparação física e acompanhamento nos campeonatos.',
+    planos: [
+      { nome: 'Atleta GFT', desc: 'Rotina de treino voltada para campeonatos.', preco: '180', itens: ['Acesso livre à grade','Treinos específicos de competição','Preparação física','Acompanhamento nos campeonatos'] },
+      { nome: 'Atleta Elite', desc: 'Pra quem tem calendário cheio de campeonatos.', preco: '250', destaque: true, itens: ['Tudo do Atleta GFT','Plano de treino individual','Estratégia por adversário/regra','Prioridade em seminários'] },
+      { nome: 'Kids Competidor', desc: 'Atletas kids que já competem.', preco: '160', itens: ['Treinos de competição kids','Preparação física adaptada','Acompanhamento nos campeonatos','Contato direto com os pais'] }
+    ]
+  }
+};
+window.FAIXAS = [
+  { nome:'Branca', label:'Primeiro passo', desc:'Onde todo mundo começa. Aprender a cair, a respirar e a voltar no dia seguinte.' },
+  { nome:'Azul', label:'A base aparece', desc:'O jogo começa a ter cara. Você já sabe onde quer chegar, e por qual caminho.' },
+  { nome:'Roxa', label:'Repertório', desc:'Técnica vira instinto. É aqui que muita gente descobre o próprio estilo.' },
+  { nome:'Marrom', label:'Lapidar', desc:'Menos força, mais detalhe. Refinar o que funciona e ajudar quem vem atrás.' },
+  { nome:'Preta', label:'Recomeço', desc:'Não é o fim da jornada. É onde você começa a entender o Jiu-Jitsu de verdade.' }
+];
+</script>
+
+<script>
+(function(){
+  const C = window.CONFIG;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const waLink = msg => 'https://wa.me/' + C.whatsapp + '?text=' + encodeURIComponent(msg || '');
+  const ICON = '<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></span>';
+
+  function bindLinks(root){
+    root.querySelectorAll('.js-wa').forEach(a=>a.href = waLink(a.dataset.msg));
+    root.querySelectorAll('.js-ig').forEach(a=>a.href = C.instagram);
+    root.querySelectorAll('.js-maps').forEach(a=>a.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(C.mapsQuery));
+  }
+  bindLinks(document);
+  document.getElementById('addr').textContent = C.endereco;
+  document.getElementById('addrFoot').textContent = C.endereco;
+  document.getElementById('waText').textContent = C.whatsappLabel;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const mf = document.getElementById('mapFrame');
+  mf.src = 'https://www.google.com/maps?q=' + encodeURIComponent(C.mapsQuery) + '&z=16&output=embed';
+
+  /* ---------- planos ---------- */
+  const P = window.PUBLICOS, plansEl = document.getElementById('plans');
+  function renderAud(key, animate){
+    const a = P[key];
+    const html = a.planos.map(p => `
+      <article class="plan${p.destaque?' feat':''}">
+        ${p.destaque?'<span class="flag">Mais escolhido</span>':''}
+        <h4>${p.nome}</h4>
+        <p class="desc">${p.desc}</p>
+        <div class="price"><span class="cur">R$</span><span class="val">${p.preco}</span><span class="per">${p.per||'/mês'}</span></div>
+        <ul>${p.itens.map(i=>`<li>${i}</li>`).join('')}</ul>
+        <a class="pill ${p.destaque?'pill-red':'pill-dark'} pill-sm js-wa" target="_blank" rel="noopener"
+           data-msg="Olá! Vim pelo site e tenho interesse no plano ${a.titulo} — ${p.nome}.">Quero esse plano ${ICON}</a>
+      </article>`).join('');
+    const apply = () => {
+      plansEl.innerHTML = html; bindLinks(plansEl);
+      document.getElementById('audImg').src = a.img;
+      document.getElementById('audImg').alt = 'Turma ' + a.titulo;
+      document.getElementById('audTitle').textContent = a.titulo;
+      document.getElementById('audTag').textContent = a.tag;
+      document.getElementById('audText').textContent = a.texto;
+    };
+    if(!animate || reduce || !window.gsap){ apply(); return; }
+    gsap.to(['#plans .plan','#audCard .in'], {y:20, opacity:0, duration:.25, stagger:.03, ease:'power2.in', onComplete(){
+      apply();
+      gsap.fromTo('#audCard img',{scale:1.12},{scale:1,duration:1.2,ease:'expo.out'});
+      gsap.fromTo(['#audCard .in','#plans .plan'],{y:40,opacity:0},{y:0,opacity:1,duration:.8,stagger:.07,ease:'expo.out'});
+    }});
+  }
+  renderAud('kids', false);
+  const tabs = document.querySelectorAll('#tabs button'), glider = document.getElementById('glider');
+  function moveGlider(btn){ glider.style.width = btn.offsetWidth+'px'; glider.style.transform = `translateX(${btn.offsetLeft-5}px)`; }
+  tabs.forEach(b=>b.addEventListener('click',()=>{
+    if(b.classList.contains('on')) return;
+    tabs.forEach(x=>x.classList.remove('on')); b.classList.add('on'); moveGlider(b); renderAud(b.dataset.aud, true);
+  }));
+  addEventListener('load',()=>moveGlider(document.querySelector('#tabs .on')));
+  addEventListener('resize',()=>moveGlider(document.querySelector('#tabs .on')));
+  document.fonts && document.fonts.ready.then(()=>moveGlider(document.querySelector('#tabs .on')));
+
+  /* ---------- menu mobile ---------- */
+  const menuBtn = document.getElementById('menuBtn');
+  menuBtn.addEventListener('click',()=>document.body.classList.toggle('menu-open'));
+  document.querySelectorAll('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('menu-open')));
+
+  /* ---------- hero letters ---------- */
+  const hn = document.getElementById('heroName');
+  hn.innerHTML = [...hn.textContent].map(c=>`<span class="ch">${c}</span>`).join('');
+
+  /* ---------- loader ---------- */
+  const countEl = document.getElementById('count'), bar = document.getElementById('bar'), loader = document.getElementById('loader');
+  let started = false;
+  window.__startIntro = function(){
+    if(started) return; started = true;
+    const o = {v:0};
+    const done = () => {
+      if(!window.gsap){ loader.remove(); return; }
+      const tl = gsap.timeline();
+      tl.to(loader,{yPercent:-100,duration:1,ease:'expo.inOut',onComplete:()=>loader.remove()})
+        .from('#heroName .ch',{yPercent:110,opacity:0,duration:1.2,stagger:.045,ease:'expo.out'},'-=.45')
+        .from('#heroSub',{opacity:0,y:10,duration:.8,ease:'power3.out'},'-=.9')
+        .from('.hero h1 .line-mask>span',{yPercent:110,duration:1,stagger:.1,ease:'expo.out'},'-=.9')
+        .from(['.hero-cta','.hero-top','.scroll-hint'],{opacity:0,y:16,duration:.8,stagger:.08,ease:'power3.out'},'-=.7')
+        .to('#heroArc',{strokeDashoffset:0,duration:2,ease:'expo.inOut'},'-=1.4')
+        .add(()=>window.__heroIntro && window.__heroIntro(),'-=2.2');
+    };
+    if(reduce || !window.gsap){ countEl.textContent='100'; setTimeout(done,150); return; }
+    gsap.to(o,{v:100,duration:1.6,ease:'power2.inOut',onUpdate(){countEl.textContent=Math.round(o.v); bar.style.width=o.v+'%';},onComplete:done});
+  };
+  // fallback: start even if 3D fails
+  setTimeout(()=>window.__startIntro(), 2500);
+
+  if(!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- smooth scroll ---------- */
+  let lenis = null;
+  if(!reduce && window.Lenis){
+    lenis = new Lenis({duration:1.15, easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)), smoothWheel:true});
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+      const id=a.getAttribute('href'); if(id.length<2) return; const t=document.querySelector(id); if(!t) return;
+      e.preventDefault(); lenis.scrollTo(t,{offset:0,duration:1.4});
+    }));
+  }
+  window.__lenis = lenis;
+
+  /* ---------- nav hide/show ---------- */
+  const nav = document.getElementById('nav'), wa = document.getElementById('waFloat');
+  let lastY = 0;
+  ScrollTrigger.create({start:0,end:'max',onUpdate(self){
+    const y = self.scroll();
+    nav.classList.toggle('scrolled', y>40);
+    nav.classList.toggle('hide', y>innerHeight*.6 && y>lastY && !document.body.classList.contains('menu-open'));
+    wa.classList.toggle('show', y>innerHeight*.5);
+    lastY = y;
+  }});
+
+  if(reduce) return;
+
+  /* ---------- reveals ---------- */
+  document.querySelectorAll('section:not(.hero) .big-h').forEach(h=>{
+    gsap.from(h.querySelectorAll('.line-mask>span'),{yPercent:110,duration:1.1,stagger:.1,ease:'expo.out',
+      scrollTrigger:{trigger:h,start:'top 85%'}});
+  });
+  gsap.utils.toArray('.thin, .manifesto-grid .side, .plans-head p, .ev, .local-info, .map, .prof .spec, .cta-row').forEach(el=>{
+    gsap.from(el,{y:30,opacity:0,duration:1,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 90%'}});
+  });
+  gsap.utils.toArray('.photo-strip .ph-frame, .win, .g').forEach((el,i)=>{
+    gsap.from(el,{clipPath:'inset(100% 0 0 0)',duration:1.3,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 92%'}});
+  });
+  gsap.utils.toArray('[data-parallax]').forEach(img=>{
+    gsap.fromTo(img,{yPercent:-7},{yPercent:7,ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  gsap.from('#planos .tabs, #aud',{y:40,opacity:0,duration:1,stagger:.1,ease:'expo.out',scrollTrigger:{trigger:'#tabs',start:'top 88%'}});
+
+  /* counters */
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const o={v:0}, end=+el.dataset.count, suf=el.dataset.suffix||'';
+    ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter(){
+      gsap.to(o,{v:end,duration:2,ease:'expo.out',onUpdate(){el.innerHTML=Math.round(o.v).toLocaleString('pt-BR')+(suf?`<sup>${suf}</sup>`:'');}});
+    }});
+  });
+
+  /* hero exit */
+  gsap.to('.hero-bottom, .hero-top',{y:-80,opacity:0,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'60% top',scrub:true}});
+  gsap.to('#heroName',{xPercent:-12,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.marquee-track',{x:'-=200',ease:'none',scrollTrigger:{trigger:'.marquee',start:'top bottom',end:'bottom top',scrub:true}});
+
+  /* footer giant name */
+  gsap.from('.foot-name',{yPercent:60,ease:'none',scrollTrigger:{trigger:'footer',start:'top bottom',end:'bottom bottom',scrub:true}});
+
+  /* ---------- cursor + magnetic + tilt (desktop) ---------- */
+  if(matchMedia('(pointer:fine)').matches){
+    const cur = document.getElementById('cursor'), dot = document.getElementById('cursorDot');
+    const qx = gsap.quickTo(cur,'x',{duration:.5,ease:'power3'}), qy = gsap.quickTo(cur,'y',{duration:.5,ease:'power3'});
+    addEventListener('mousemove',e=>{qx(e.clientX);qy(e.clientY);gsap.set(dot,{x:e.clientX,y:e.clientY});});
+    document.addEventListener('mouseover',e=>{cur.classList.toggle('hover',!!e.target.closest('a,button'));});
+    document.querySelectorAll('.pill').forEach(p=>{
+      p.addEventListener('mousemove',e=>{const r=p.getBoundingClientRect();gsap.to(p,{x:(e.clientX-r.left-r.width/2)*.25,y:(e.clientY-r.top-r.height/2)*.35,duration:.6,ease:'power3'});});
+      p.addEventListener('mouseleave',()=>gsap.to(p,{x:0,y:0,duration:.9,ease:'elastic.out(1,.4)'}));
+    });
+    document.querySelectorAll('.tilt').forEach(t=>{
+      t.addEventListener('mousemove',e=>{const r=t.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+        gsap.to(t,{rotateY:x*10,rotateX:-y*10,transformPerspective:900,duration:.6,ease:'power3'});});
+      t.addEventListener('mouseleave',()=>gsap.to(t,{rotateY:0,rotateX:0,duration:1,ease:'expo.out'}));
+    });
+  }
+})();
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+const isMobile = matchMedia('(max-width: 720px)').matches || matchMedia('(pointer:coarse)').matches;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const DPR = Math.min(devicePixelRatio || 1, isMobile ? 1.5 : 2);
+const RED = new THREE.Color('#D90A12');
+
+function makeRenderer(canvas){
+  const r = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true, powerPreference:'high-performance'});
+  r.setPixelRatio(DPR);
+  r.outputColorSpace = THREE.SRGBColorSpace;
+  r.toneMapping = THREE.ACESFilmicToneMapping;
+  r.toneMappingExposure = 1.05;
+  return r;
+}
+function visibility(el, cb){
+  const io = new IntersectionObserver(([e])=>cb(e.isIntersecting),{rootMargin:'100px'});
+  io.observe(el);
+}
+const mouse = {x:0,y:0,tx:0,ty:0};
+addEventListener('pointermove',e=>{mouse.tx=e.clientX/innerWidth*2-1; mouse.ty=e.clientY/innerHeight*2-1;});
+
+/* ================= HERO: medalhão 3D ================= */
+(function hero(){
+  const canvas = document.getElementById('hero3d');
+  const heroEl = document.getElementById('hero');
+  const renderer = makeRenderer(canvas);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(32, 1, .1, 100);
+  camera.position.set(0,0,9);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture;
+
+  const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(-4,3,5); scene.add(key);
+  const rim = new THREE.PointLight(0xff2a2a, 40, 20); rim.position.set(4,-1,-2); scene.add(rim);
+  const back = new THREE.DirectionalLight(0xffffff, 1.2); back.position.set(2,4,-6); scene.add(back);
+
+  const root = new THREE.Group(); scene.add(root);
+  const medal = new THREE.Group(); root.add(medal);
+
+  const loader = new THREE.TextureLoader();
+  const tex = loader.load('img/logo-tex.jpg', ()=>window.__startIntro && window.__startIntro());
+  tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+  tex.center.set(.5,.5); tex.rotation = 0;
+
+  const R = 1.55, T = .2;
+  const rimMat = new THREE.MeshStandardMaterial({color:0xd8d8d8, metalness:1, roughness:.22});
+  const faceMat = new THREE.MeshStandardMaterial({map:tex, metalness:.25, roughness:.4, emissive:0xffffff, emissiveMap:tex, emissiveIntensity:.32});
+  // face: circle facing +Z (front) and -Z (back)
+  const faceGeo = new THREE.CircleGeometry(R*.93, 128);
+  const front = new THREE.Mesh(faceGeo, faceMat); front.position.z = T/2+.001; medal.add(front);
+  const backF = new THREE.Mesh(faceGeo, faceMat); backF.position.z = -T/2-.001; backF.rotation.y = Math.PI; medal.add(backF);
+  // rim: lathe profile = metallic bezel
+  const pts = [];
+  const inner = R*.93, outer = R;
+  pts.push(new THREE.Vector2(inner, -T/2-.02));
+  for(let i=0;i<=16;i++){const a=-Math.PI/2+Math.PI*i/16; pts.push(new THREE.Vector2(outer-.07+Math.cos(a)*.09, Math.sin(a)*(T/2+.03)));}
+  pts.push(new THREE.Vector2(inner, T/2+.02));
+  const bezel = new THREE.Mesh(new THREE.LatheGeometry(pts, 160), rimMat);
+  bezel.rotation.x = Math.PI/2; medal.add(bezel);
+  // fill disc between faces (dark)
+  const core = new THREE.Mesh(new THREE.CylinderGeometry(inner, inner, T, 96, 1, true), new THREE.MeshStandardMaterial({color:0x111111, metalness:.6, roughness:.5}));
+  core.rotation.x = Math.PI/2; medal.add(core);
+
+  // orbit rings
+  const ringMat = new THREE.MeshBasicMaterial({color:RED});
+  const ring1 = new THREE.Mesh(new THREE.TorusGeometry(2.25, .008, 8, 256), ringMat);
+  const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.6, .005, 8, 256), new THREE.MeshBasicMaterial({color:0xffffff, transparent:true, opacity:.35}));
+  ring1.rotation.set(1.2,.3,0); ring2.rotation.set(1.4,-.5,0);
+  root.add(ring1, ring2);
+
+  // red triangles (motivo do logo)
+  const triShape = new THREE.Shape(); triShape.moveTo(0,.5); triShape.lineTo(.48,-.32); triShape.lineTo(-.48,-.32); triShape.closePath();
+  const triGeo = new THREE.ExtrudeGeometry(triShape,{depth:.12, bevelEnabled:true, bevelThickness:.03, bevelSize:.025, bevelSegments:3});
+  triGeo.center();
+  const triMat = new THREE.MeshStandardMaterial({color:RED, metalness:.55, roughness:.28});
+  const tris = [];
+  const triPos = [[-2.6,1.3,-.6,.55],[2.5,-1.4,.4,.42],[2.3,1.7,-1.2,.3],[-2.2,-1.6,.8,.24]];
+  triPos.forEach(([x,y,z,s],i)=>{const m=new THREE.Mesh(triGeo,triMat);m.position.set(x,y,z);m.scale.setScalar(s);m.userData={b:new THREE.Vector3(x,y,z),o:i*1.7};root.add(m);tris.push(m);});
+
+  // particles
+  const N = isMobile ? 260 : 700;
+  const pg = new THREE.BufferGeometry(); const pp = new Float32Array(N*3), pc = new Float32Array(N*3);
+  for(let i=0;i<N;i++){
+    const r = 2.4 + Math.random()*4.5, a = Math.random()*Math.PI*2;
+    pp[i*3]=Math.cos(a)*r; pp[i*3+1]=(Math.random()-.5)*5; pp[i*3+2]=Math.sin(a)*r-2;
+    const red = Math.random()<.22; pc[i*3]=1; pc[i*3+1]=red?.1:1; pc[i*3+2]=red?.12:1;
+  }
+  pg.setAttribute('position',new THREE.BufferAttribute(pp,3)); pg.setAttribute('color',new THREE.BufferAttribute(pc,3));
+  const points = new THREE.Points(pg,new THREE.PointsMaterial({size:.022, vertexColors:true, transparent:true, opacity:.75, depthWrite:false}));
+  scene.add(points);
+
+  // layout
+  function layout(){
+    const w = heroEl.clientWidth, h = heroEl.clientHeight;
+    renderer.setSize(w,h,false); camera.aspect = w/h; camera.updateProjectionMatrix();
+    if(w < 720){ root.position.set(0, 1.25, 0); }
+    else { root.position.set(1.9*Math.min(camera.aspect/1.7,1.25), .5, 0); }
+    if(introDone) root.scale.setScalar(baseScale());
+  }
+  function baseScale(){ return heroEl.clientWidth < 720 ? Math.min(.52, camera.aspect*1.05) : .84; }
+  let introDone = false;
+  layout(); addEventListener('resize', layout);
+
+  // intro
+  medal.rotation.y = -Math.PI*1.5; root.scale.setScalar(.001);
+  window.__heroIntro = () => {
+    const s = baseScale();
+    if(!window.gsap || reduce){ medal.rotation.y=0; root.scale.setScalar(s); introDone=true; return; }
+    gsap.to(root.scale,{x:s,y:s,z:s,duration:1.6,ease:'expo.out'});
+    gsap.to(medal.rotation,{y:0,duration:2.4,ease:'expo.out',onComplete:()=>{introDone=true; root.scale.setScalar(baseScale());}});
+  };
+
+  // scroll
+  let sp = 0;
+  if(window.gsap && window.ScrollTrigger){
+    ScrollTrigger.create({trigger:heroEl,start:'top top',end:'bottom top',onUpdate:s=>sp=s.progress});
+  }
+
+  let visible = true; visibility(heroEl, v=>visible=v);
+  const clock = new THREE.Clock();
+  function tick(){
+    requestAnimationFrame(tick);
+    if(!visible) return;
+    const t = clock.getElapsedTime();
+    mouse.x += (mouse.tx-mouse.x)*.05; mouse.y += (mouse.ty-mouse.y)*.05;
+    if(introDone) medal.rotation.y = mouse.x*.45 + Math.sin(t*.6)*.18 + sp*Math.PI*1.2;
+    medal.rotation.x = mouse.y*.25 + Math.sin(t*.8)*.05;
+    medal.position.y = Math.sin(t*1.1)*.08 + sp*1.6;
+    ring1.rotation.z = t*.25; ring2.rotation.z = -t*.18;
+    tris.forEach(m=>{m.rotation.x=t*.4+m.userData.o; m.rotation.y=t*.55+m.userData.o; m.position.y=m.userData.b.y+Math.sin(t+m.userData.o)*.15 + sp*(1+m.userData.o*.3);});
+    points.rotation.y = t*.03 + mouse.x*.08; points.position.y = sp*1.2;
+    camera.position.x = mouse.x*.25; camera.position.y = -mouse.y*.18; camera.lookAt(0,0,0);
+    renderer.render(scene,camera);
+  }
+  tick();
+})();
+
+/* ================= FAIXAS 3D ================= */
+(function belts(){
+  const section = document.getElementById('faixas');
+  const canvas = document.getElementById('belts3d');
+  const renderer = makeRenderer(canvas);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, 1, .1, 100);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture;
+  const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(-3,4,6); scene.add(key);
+  const redL = new THREE.PointLight(0xff2020, 30, 18); redL.position.set(3,-2,2); scene.add(redL);
+
+  // fabric texture (costuras longitudinais)
+  function fabric(){
+    const c = document.createElement('canvas'); c.width = 1024; c.height = 128;
+    const g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0,0,1024,128);
+    for(let i=0;i<9000;i++){ g.fillStyle = `rgba(0,0,0,${Math.random()*.05})`; g.fillRect(Math.random()*1024, Math.random()*128, 2, 1); }
+    g.strokeStyle = 'rgba(0,0,0,.28)'; g.lineWidth = 1.5; g.setLineDash([6,5]);
+    for(let y=14;y<128;y+=14){ g.beginPath(); g.moveTo(0,y); g.lineTo(1024,y); g.stroke(); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+  }
+  const fab = fabric();
+  const L = 6.2, H = .62, D = .12;
+  const beltGeo = new RoundedBoxGeometry(L, H, D, 3, .05);
+  const tipGeo = new RoundedBoxGeometry(1.25, H+.02, D+.03, 3, .05);
+  const stripeGeo = new THREE.BoxGeometry(.07, H+.03, D+.05);
+  const defs = [
+    {c:'#F2F2EE', tip:'#111111'},
+    {c:'#1F4FB8', tip:'#111111'},
+    {c:'#6A2C9C', tip:'#111111'},
+    {c:'#5A3622', tip:'#111111'},
+    {c:'#141414', tip:'#D90A12'}
+  ];
+  const belts = [];
+  defs.forEach((d,i)=>{
+    const g = new THREE.Group();
+    const m = new THREE.Mesh(beltGeo, new THREE.MeshStandardMaterial({color:d.c, map:fab, roughness:.85, metalness:0}));
+    const tip = new THREE.Mesh(tipGeo, new THREE.MeshStandardMaterial({color:d.tip, roughness:.6, metalness:.05}));
+    tip.position.x = L/2 - 1.0;
+    g.add(m, tip);
+    for(let s=0;s<4;s++){ const st = new THREE.Mesh(stripeGeo, new THREE.MeshStandardMaterial({color:'#f5f5f0', roughness:.7})); st.position.x = L/2 - 1.45 + s*.2 + .35; g.add(st); }
+    scene.add(g); belts.push(g);
+  });
+  // particles
+  const N = isMobile ? 200 : 500;
+  const pg = new THREE.BufferGeometry(); const pp = new Float32Array(N*3);
+  for(let i=0;i<N;i++){ pp[i*3]=(Math.random()-.5)*20; pp[i*3+1]=(Math.random()-.5)*12; pp[i*3+2]=-Math.random()*8-1; }
+  pg.setAttribute('position', new THREE.BufferAttribute(pp,3));
+  const points = new THREE.Points(pg, new THREE.PointsMaterial({color:0xffffff, size:.025, transparent:true, opacity:.4, depthWrite:false}));
+  scene.add(points);
+
+  let offX = 0;
+  function layout(){
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    renderer.setSize(w,h,false); camera.aspect = w/h;
+    const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov/2));
+    const mobile = w < 900;
+    const fitW = mobile ? 8 : 13.5; // largura visível desejada
+    camera.position.set(0, 0, Math.max(9, fitW/(2*tan*camera.aspect)));
+    offX = mobile ? 0 : 1.9;
+    camera.updateProjectionMatrix();
+  }
+  layout(); addEventListener('resize', layout);
+
+  // UI
+  const F = window.FAIXAS;
+  const numEl = document.getElementById('beltNum'), nameEl = document.getElementById('beltName'), labEl = document.getElementById('beltLabel'), descEl = document.getElementById('beltDesc'), arc = document.getElementById('beltArc');
+  const headEl = document.querySelector('.belts-head');
+  let active = 0;
+  function setActive(i){
+    if(i===active) return; active = i;
+    const upd = ()=>{ numEl.textContent = String(i+1).padStart(2,'0'); nameEl.textContent = F[i].nome; labEl.textContent = F[i].label; descEl.textContent = F[i].desc; };
+    if(window.gsap && !reduce){
+      gsap.to('.belt-text, #beltNum',{opacity:0,y:-14,duration:.22,ease:'power2.in',onComplete(){upd(); gsap.fromTo('.belt-text, #beltNum',{opacity:0,y:18},{opacity:1,y:0,duration:.6,ease:'expo.out'});}});
+    } else upd();
+  }
+
+  let prog = 0, sm = 0;
+  function readProgress(){
+    const r = section.getBoundingClientRect();
+    const total = section.offsetHeight - innerHeight;
+    prog = Math.min(1, Math.max(0, -r.top/total));
+  }
+  addEventListener('scroll', readProgress, {passive:true}); readProgress();
+
+  let visible = false; visibility(section, v=>visible=v);
+  const clock = new THREE.Clock();
+  const n = belts.length;
+  function tick(){
+    requestAnimationFrame(tick);
+    if(!visible) return;
+    readProgress();
+    const t = clock.getElapsedTime();
+    sm += (prog - sm) * .08;
+    const f = sm * (n - 1);           // 0..4
+    setActive(Math.min(n-1, Math.round(f)));
+    arc.style.strokeDashoffset = 289 * (1 - sm);
+    headEl.style.opacity = Math.max(0, 1 - Math.max(0, sm - .12) * 5).toFixed(3);
+    const mobile = innerWidth < 900;
+    belts.forEach((g,i)=>{
+      const d = i - f;                  // >0 ainda vai chegar, <0 já passou
+      const ad = Math.abs(d), focus = Math.max(0, 1-ad);
+      const spread = mobile ? .62 : 1.05;
+      g.position.x = offX + (mobile ? 0 : d*.35);
+      // faixas que já passaram se empilham atrás, sem subir até o título
+      const past = d < 0 ? Math.min(-d, 2.4) : 0;
+      g.position.y = (d < 0 ? past*spread*.75 : -d*spread) + (mobile ? .35 : 0);
+      g.position.z = focus*1.4 - ad*(d < 0 ? 1.3 : .9);
+      g.rotation.x = d*.42 + Math.sin(t*.7+i)*.03;
+      g.rotation.y = -.28 + (mobile? .1 : 0) + Math.sin(t*.5+i)*.05 + mouse.x*.12*focus;
+      g.rotation.z = .1 - d*.06;
+      const s = (mobile ? .95 : 1) * (1 + focus*.12);
+      g.scale.setScalar(s);
+    });
+    points.rotation.z = t*.01; points.position.y = sm*3;
+    camera.position.x += (mouse.x*.3 - camera.position.x)*.05;
+    renderer.render(scene, camera);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
